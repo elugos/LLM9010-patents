@@ -12,10 +12,10 @@ def build_prompts(items):
         summary = item.get("summary", "").strip()
         if not title or not summary:
             continue
-        out.append(f"Make a patent for {title} from the following description: {summary}")
+        out.append(f"Make a patent description for {title} from the following summary: {summary}")
     return out
 
-data = load_json("patents.json")
+data = load_json("patents_for_prompts.json")
 prompts = build_prompts(data)
 
-Path("patent_prompts.json").write_text(json.dumps(prompts, indent=2))
+Path("fifty_patent_prompts.json").write_text(json.dumps(prompts, indent=2))
